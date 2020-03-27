@@ -1,17 +1,17 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
-
+import axios from 'axios';
 
 class Login extends React.Component {
 
     state = {
-        data: {
+        
             Username: '',
             password: '',
             permission:0
           
-        }
+       
        
         
     };
@@ -26,13 +26,27 @@ class Login extends React.Component {
     }
 
    validateLogin=()=>{
-  if(this.state.Username=='admin' && this.state.password=='admin')
-  {
-    this.setState({permission:1})
+console.log(this.state);
+const user={
+    name:this.state.Username,
+    password:this.state.password
 }
-  else{
-     this.setState({permission:0})
-  }
+axios.post('http://localhost:4000/login', { user })
+.then(res => {
+
+    console.log(res.data)
+if(res.data.statusCode==200){
+    localStorage.setItem('token', res.data.tokenId);
+ this.setState({permission:1});
+ 
+} 
+else{
+    this.setState({permission:0})
+}
+  
+
+});
+
 
    }
 

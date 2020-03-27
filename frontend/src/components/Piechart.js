@@ -9,11 +9,12 @@ class Piechart extends Component {
   constructor() {
     super();
     this.state = {
-     work:0
+     amountSum:''
     };
 
 
   }
+
   addExpense=()=>{
        console.log('working')
      

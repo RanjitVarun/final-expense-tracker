@@ -17,7 +17,10 @@ class UserList extends Component {
 
   }
   componentDidMount() {
-    axios.get('http://localhost:4000/userdetails/relation')
+  const id=  localStorage.getItem('token')
+    axios.get('http://localhost:4000/userdetails/relation', {headers: {
+      'Authorization': id
+    }})
       .then(res => {
         console.log(res.data);
     

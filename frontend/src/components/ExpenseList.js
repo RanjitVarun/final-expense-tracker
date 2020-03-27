@@ -16,7 +16,7 @@ componentDidMount() {
   axios.get('http://localhost:4000/expensedetails/all')
     .then(res => {
    // console.log(res.data);
-  
+  console.log(res.data)
       const persons = res.data;
       this.setState({expenseList:persons});
     })
@@ -34,8 +34,30 @@ return result
 }
 }
 deleteExpense=(e)=>{
-console.log(e);
+  console.log(e)
+  axios.delete('http://localhost:4000/expensedetails/'+e)
+  .then(res => {
+   this.rendertableagain()
+ console.log(res);
+   
+  })
 }
+
+
+
+rendertableagain=()=>{
+  console.log('here')
+  axios.get('http://localhost:4000/expensedetails/all')
+  .then(res => {
+    console.log(res.data);
+
+    const persons = res.data;
+    this.setState({ expenseList:persons});
+  
+
+  })
+}
+
 
 renderExpValues=()=>{
   return this.state.expenseList.map((result) => {
