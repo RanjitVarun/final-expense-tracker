@@ -12,15 +12,17 @@ class UserList extends Component {
      userlist:[],
      firtFive:[],
      userid:false,
-     key:''
+     key:'',
+     id:'',
+     role:''
     };
 
   }
   componentDidMount() {
-  const id=  localStorage.getItem('token')
-    axios.get('http://localhost:4000/userdetails/relation', {headers: {
-      'Authorization': id
-    }})
+  const id=  localStorage.getItem('role')
+this.setState({role:id})
+  
+    axios.get('http://localhost:4000/userdetails/relation')
       .then(res => {
         console.log(res.data);
     
@@ -30,8 +32,8 @@ class UserList extends Component {
   }
 
 rendertableagain=()=>{
-  console.log('here')
-  axios.get('http://localhost:4000/userdetails/relation')
+  
+  axios.get('http://localhost:4000/userdetails/relation',)
   .then(res => {
     console.log(res.data);
 
@@ -49,6 +51,7 @@ rendertableagain=()=>{
 
   deleteUser=(e)=>{
     console.log(e)
+  
     axios.delete('http://localhost:4000/userdetails/delete/'+e)
     .then(res => {
      

@@ -11,9 +11,6 @@ class Login extends React.Component {
             password: '',
             permission:0
           
-       
-       
-        
     };
 
     datachangeName=(e)=>{
@@ -37,6 +34,8 @@ axios.post('http://localhost:4000/login', { user })
     console.log(res.data)
 if(res.data.statusCode==200){
     localStorage.setItem('token', res.data.tokenId);
+    localStorage.setItem('role',res.data.role);
+    localStorage.setItem('userId',res.data.userId);
  this.setState({permission:1});
  
 } 
@@ -64,9 +63,6 @@ else{
         
     }
 }
-
-
-
 
     render() {
       

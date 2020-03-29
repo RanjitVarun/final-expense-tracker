@@ -19,7 +19,7 @@ class ExpenseForm extends Component {
 
 
   componentDidMount() {
-    localStorage.setItem('userId', 102);
+   
     axios.get('http://localhost:4000/department')
       .then(res => {
      // console.log(res.data);
